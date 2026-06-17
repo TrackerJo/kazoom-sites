@@ -317,3 +317,71 @@ ul {
 .skip-link:focus-visible {
   transform: translateY(0);
 }
+
+/* ============================================================
+   Showy layer — animated backdrops, marquee, shimmer
+   ============================================================ */
+
+/* Living aurora: warm coral light that drifts behind the fold. */
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -3%, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes marquee-track {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -150% 0;
+  }
+  100% {
+    background-position: 250% 0;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* A warm coral wordmark gradient, used once on a single hero word. */
+.accent-gradient {
+  background: linear-gradient(
+    104deg,
+    var(--coral-strong) 0%,
+    oklch(0.66 0.19 18) 52%,
+    var(--coral-deep) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accent-gradient {
+    background: none;
+    color: var(--coral-strong);
+  }
+}

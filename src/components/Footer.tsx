@@ -1,4 +1,6 @@
+import { motion, useReducedMotion } from 'motion/react'
 import { KazoomMark, Instagram, Facebook } from './icons'
+import { EASE_OUT } from '../lib/anim'
 import styles from './Footer.module.css'
 
 const COLUMNS = [
@@ -17,9 +19,17 @@ const COLUMNS = [
 ]
 
 export function Footer() {
+  const reduce = useReducedMotion()
+
   return (
     <footer className={styles.footer}>
-      <div className={`container ${styles.grid}`}>
+      <motion.div
+        className={`container ${styles.grid}`}
+        initial={reduce ? false : { opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: EASE_OUT }}
+      >
         <div className={styles.brandCol}>
           <a href="#top" className={styles.brand} aria-label="Kazoom home">
             <KazoomMark className={styles.mark} />
@@ -53,7 +63,7 @@ export function Footer() {
             </div>
           ))}
         </nav>
-      </div>
+      </motion.div>
 
       <div className={`container ${styles.bottom}`}>
         <p>© 2026 Kazoom. Made for small businesses.</p>

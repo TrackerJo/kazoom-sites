@@ -1,4 +1,7 @@
-import { Reveal } from './Reveal'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { ArrowRight } from './icons'
+import { EASE_OUT } from '../lib/anim'
 import styles from './Testimonials.module.css'
 
 const QUOTES = [
@@ -28,34 +31,105 @@ const QUOTES = [
   },
 ]
 
+const variants = {
+  enter: (dir: number) => ({ opacity: 0, x: dir > 0 ? 80 : -80 }),
+  center: { opacity: 1, x: 0 },
+  exit: (dir: number) => ({ opacity: 0, x: dir > 0 ? -80 : 80 }),
+}
+
 export function Testimonials() {
+  const reduce = useReducedMotion()
+  const [[index, dir], setState] = useState<[number, number]>([0, 0])
+  const active = QUOTES[index]
+
+  const paginate = (d: number) =>
+    setState(([i]) => [(i + d + QUOTES.length) % QUOTES.length, d])
+  const goTo = (i: number) => setState(([cur]) => [i, i > cur ? 1 : -1])
+
+  useEffect(() => {
+    if (reduce) return
+    const id = setTimeout(() => paginate(1), 6500)
+    return () => clearTimeout(id)
+  }, [index, reduce])
+
   return (
-    <section className={styles.section} aria-label="What owners say">
+    <section className={styles.section} id="stories" aria-label="What owners say" aria-roledescription="carousel">
       <div className="container">
-        <Reveal>
-          <h2 className={styles.title}>Owners who took the leap</h2>
-        </Reveal>
-        <div className={styles.grid}>
-          {QUOTES.map((item, i) => (
-            <Reveal key={item.name} delay={i * 90}>
-              <figure className={styles.card}>
-                <blockquote className={styles.quote}>{item.quote}</blockquote>
-                <figcaption className={styles.person}>
-                  <span
-                    className={styles.avatar}
-                    style={{ background: item.tint }}
-                    aria-hidden="true"
-                  >
-                    {item.initials}
-                  </span>
-                  <span>
-                    <span className={styles.name}>{item.name}</span>
-                    <span className={styles.business}>{item.business}</span>
-                  </span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
+        <motion.h2
+          className={styles.title}
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, ease: EASE_OUT }}
+        >
+          Owners who took the leap
+        </motion.h2>
+
+        <div className={styles.stage}>
+          <AnimatePresence mode="wait" custom={dir} initial={false}>
+            <motion.figure
+              key={index}
+              className={styles.card}
+              custom={dir}
+              variants={reduce ? undefined : variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.5, ease: EASE_OUT }}
+              drag={reduce ? false : 'x'}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(_, info) => {
+                if (info.offset.x < -80) paginate(1)
+                else if (info.offset.x > 80) paginate(-1)
+              }}
+            >
+              <blockquote className={styles.quote}>{active.quote}</blockquote>
+              <figcaption className={styles.person}>
+                <span className={styles.avatar} style={{ background: active.tint }} aria-hidden="true">
+                  {active.initials}
+                </span>
+                <span>
+                  <span className={styles.name}>{active.name}</span>
+                  <span className={styles.business}>{active.business}</span>
+                </span>
+              </figcaption>
+            </motion.figure>
+          </AnimatePresence>
+
+          <div className={styles.controls}>
+            <div className={styles.dots} role="tablist" aria-label="Choose testimonial">
+              {QUOTES.map((q, i) => (
+                <button
+                  key={q.name}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === index}
+                  aria-label={`Show testimonial from ${q.name}`}
+                  className={`${styles.dot} ${i === index ? styles.dotOn : ''}`}
+                  onClick={() => goTo(i)}
+                />
+              ))}
+            </div>
+            <div className={styles.arrows}>
+              <button
+                type="button"
+                className={styles.arrow}
+                aria-label="Previous testimonial"
+                onClick={() => paginate(-1)}
+              >
+                <ArrowRight style={{ transform: 'rotate(180deg)' }} />
+              </button>
+              <button
+                type="button"
+                className={styles.arrow}
+                aria-label="Next testimonial"
+                onClick={() => paginate(1)}
+              >
+                <ArrowRight />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

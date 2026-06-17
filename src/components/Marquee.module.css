@@ -1,0 +1,63 @@
+.strip {
+  padding: 18px 0 36px;
+  text-align: center;
+}
+
+.lead {
+  font-family: var(--body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.viewport {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: 14px;
+  padding: 4px 7px;
+  animation: marquee-track 38s linear infinite;
+  will-change: transform;
+}
+.viewport:hover .track {
+  animation-play-state: paused;
+}
+.track li {
+  flex-shrink: 0;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--pill);
+  padding: 11px 22px;
+  box-shadow: var(--shadow-soft);
+}
+
+.fadeL,
+.fadeR {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No scrolling: show a single static row, clipped by the edge fade. */
+  .track {
+    animation: none;
+  }
+}

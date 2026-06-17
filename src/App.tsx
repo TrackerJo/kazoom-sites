@@ -1,8 +1,9 @@
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
-import { TrustStrip } from './components/TrustStrip'
+import { Marquee } from './components/Marquee'
 import { Showcase } from './components/Showcase'
-import { HowItWorks } from './components/HowItWorks'
+import { Steps } from './components/Steps'
+import { Stats } from './components/Stats'
 import { Value } from './components/Value'
 import { Testimonials } from './components/Testimonials'
 import { Pricing } from './components/Pricing'
@@ -19,9 +20,10 @@ function App() {
       <Nav />
       <main id="main">
         <Hero />
-        <TrustStrip />
+        <Marquee />
         <Showcase />
-        <HowItWorks />
+        <Steps />
+        <Stats />
         <Value />
         <Testimonials />
         <Pricing />
