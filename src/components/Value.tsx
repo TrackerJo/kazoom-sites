@@ -77,7 +77,6 @@ export function Value() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: i * 0.08, ease: EASE_OUT }}
-                whileHover={reduce ? undefined : { y: -6 }}
               >
                 <span className={styles.tileIcon}>
                   <Icon />

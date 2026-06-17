@@ -66,7 +66,9 @@
   background: oklch(1 0 0 / 0.08);
   border: 1px solid oklch(1 0 0 / 0.16);
   backdrop-filter: blur(4px);
-  will-change: transform;
+  transition:
+    box-shadow 0.35s var(--ease-out),
+    border-color 0.25s ease;
 }
 .tile:nth-child(2),
 .tile:nth-child(3) {
@@ -114,6 +116,22 @@
   background: oklch(1 0 0 / 0.18);
   border: 1px solid oklch(1 0 0 / 0.2);
   color: var(--on-coral);
+  transition:
+    transform 0.3s var(--ease-out),
+    background-color 0.25s ease;
+}
+
+/* Hover lifts the icon (a child), not the card itself — so the pointer never
+   leaves the tile's hit area. Hover-capable devices only. */
+@media (hover: hover) {
+  .tile:hover {
+    border-color: oklch(1 0 0 / 0.32);
+    box-shadow: 0 16px 38px oklch(0.28 0.08 35 / 0.3);
+  }
+  .tile:hover .tileIcon {
+    transform: translateY(-4px) scale(1.06);
+    background: oklch(1 0 0 / 0.26);
+  }
 }
 .tileIcon svg {
   width: 24px;

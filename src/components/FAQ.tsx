@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Plus } from './icons'
-import { EASE_OUT } from '../lib/anim'
+import { EASE_OUT, EASE_IN_OUT } from '../lib/anim'
 import styles from './FAQ.module.css'
 
 const FAQS = [
@@ -75,7 +75,7 @@ export function FAQ() {
                     className={styles.icon}
                     aria-hidden="true"
                     animate={{ rotate: isOpen ? 135 : 0 }}
-                    transition={{ duration: 0.4, ease: EASE_OUT }}
+                    transition={{ duration: 0.34, ease: EASE_IN_OUT }}
                   >
                     <Plus />
                   </motion.span>
@@ -90,7 +90,7 @@ export function FAQ() {
                       initial={reduce ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={reduce ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: EASE_OUT }}
+                      transition={{ duration: 0.34, ease: EASE_IN_OUT }}
                     >
                       <p className={styles.answer}>{item.a}</p>
                     </motion.div>

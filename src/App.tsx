@@ -1,3 +1,4 @@
+import { ScrollProgress } from './components/ScrollProgress'
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
 import { Marquee } from './components/Marquee'
@@ -17,6 +18,7 @@ function App() {
       <a href="#main" className="skip-link">
         Skip to content
       </a>
+      <ScrollProgress />
       <Nav />
       <main id="main">
         <Hero />

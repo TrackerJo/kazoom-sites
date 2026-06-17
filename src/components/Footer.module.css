@@ -51,10 +51,12 @@
     color 0.2s ease,
     border-color 0.2s ease;
 }
-.social a:hover {
-  transform: translateY(-2px);
-  color: var(--coral-deep);
-  border-color: var(--coral);
+@media (hover: hover) {
+  .social a:hover {
+    transform: translateY(-2px);
+    color: var(--coral-deep);
+    border-color: var(--coral);
+  }
 }
 .social svg {
   width: 21px;

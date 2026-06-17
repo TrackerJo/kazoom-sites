@@ -124,11 +124,13 @@
     color 0.25s ease,
     box-shadow 0.35s var(--ease-out);
 }
-.arrow:hover {
-  transform: translateY(-2px);
-  border-color: var(--coral);
-  color: var(--coral-deep);
-  box-shadow: var(--shadow-lift);
+@media (hover: hover) {
+  .arrow:hover {
+    transform: translateY(-2px);
+    border-color: var(--coral);
+    color: var(--coral-deep);
+    box-shadow: var(--shadow-lift);
+  }
 }
 .arrow:active {
   transform: scale(0.95);

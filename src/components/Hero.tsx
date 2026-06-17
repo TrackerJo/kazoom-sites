@@ -54,9 +54,9 @@ export function Hero() {
         <div className={styles.copy}>
           <motion.span
             className={`eyebrow ${styles.eyebrow}`}
-            initial={reduce ? false : { opacity: 0, y: 12 }}
+            initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: EASE_OUT }}
+            transition={{ duration: 0.6, delay: 0.15, ease: EASE_OUT }}
           >
             Websites for small businesses
           </motion.span>

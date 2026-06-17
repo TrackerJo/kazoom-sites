@@ -8,6 +8,8 @@ import {
 
 /** Shared easing + spring vocabulary so every surface moves the same way. */
 export const EASE_OUT = [0.16, 1, 0.3, 1] as const
+/** For on-screen morphs (accordions, resizes): symmetric accel + decel. */
+export const EASE_IN_OUT = [0.645, 0.045, 0.355, 1] as const
 export const SPRING_SOFT = { type: 'spring', stiffness: 120, damping: 18, mass: 0.6 } as const
 export const SPRING_SNAP = { type: 'spring', stiffness: 320, damping: 24, mass: 0.5 } as const
 
