@@ -5,7 +5,7 @@
 }
 
 .head {
-  max-width: 30ch;
+  max-width: 40ch;
   margin-bottom: clamp(40px, 5vw, 64px);
 }
 .title {

@@ -139,7 +139,9 @@ ul {
   font-weight: 600;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
-  color: var(--coral-strong);
+  /* coral-deep clears WCAG AA (6.2:1) at this small size; the bright coral
+     lives in the dash mark below, which is decorative, not text. */
+  color: var(--coral-deep);
   text-transform: none;
 }
 
@@ -170,8 +172,8 @@ ul {
   background: var(--btn-bg);
   color: var(--btn-fg);
   transition:
-    transform 0.45s var(--ease-out),
-    box-shadow 0.45s var(--ease-out),
+    transform 0.2s var(--ease-out),
+    box-shadow 0.35s var(--ease-out),
     background-color 0.25s ease,
     border-color 0.25s ease;
   will-change: transform;
@@ -180,6 +182,19 @@ ul {
 .btn svg {
   width: 19px;
   height: 19px;
+  transition: transform 0.3s var(--ease-out);
+}
+
+/* Arrow-bearing CTAs nudge their glyph forward on hover, echoing the
+   inline "Start yours →" link so the motion language stays consistent. */
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* Tactile press: the button settles back down under the pointer. */
+.btn:active {
+  transform: translateY(0) scale(0.985);
+  transition-duration: 0.06s;
 }
 
 .btn-primary {

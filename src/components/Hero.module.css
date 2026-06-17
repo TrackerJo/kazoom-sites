@@ -29,20 +29,23 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1.04fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   align-items: center;
-  gap: clamp(32px, 5vw, 72px);
+  gap: clamp(32px, 4vw, 56px);
 }
 
 .copy {
-  max-width: 36rem;
+  max-width: 40rem;
 }
 
 .title {
   margin: 20px 0 0;
-  font-size: clamp(2.6rem, 6.2vw, 4.6rem);
+  font-size: clamp(2.2rem, 6vw, 3.8rem);
   font-weight: 800;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.04em;
+  /* Let the accent line wrap on narrow screens instead of balancing into a
+     single line that would overflow the viewport. */
+  text-wrap: pretty;
 }
 .accent {
   color: var(--coral-strong);
