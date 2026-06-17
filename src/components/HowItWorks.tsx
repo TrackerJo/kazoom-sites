@@ -41,9 +41,9 @@ function Step({
       style={{ transitionDelay: `${index * 110}ms` }}
     >
       <div className={styles.marker}>
-        <span className={styles.num}>{index + 1}</span>
-        <span className={styles.iconWrap}>
+        <span className={styles.disc}>
           <Icon />
+          <span className={styles.num}>{index + 1}</span>
         </span>
       </div>
       <h3 className={styles.stepTitle}>{title}</h3>

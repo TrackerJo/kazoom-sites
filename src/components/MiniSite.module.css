@@ -249,6 +249,9 @@
   .msLinks {
     display: none;
   }
+  .msNavCta {
+    margin-left: auto;
+  }
   .msHeroText {
     max-width: 100%;
   }

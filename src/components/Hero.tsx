@@ -58,7 +58,7 @@ export function Hero() {
             <MiniSite data={marloweCoffee} featured className={styles.desktop} />
             <div className={styles.phone} aria-hidden="true">
               <span className={styles.notch} />
-              <MiniSite data={sageAndStone} className={styles.phoneSite} />
+              <MiniSite data={sageAndStone} chromeless className={styles.phoneSite} />
             </div>
           </div>
         </Reveal>

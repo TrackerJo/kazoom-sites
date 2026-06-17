@@ -31,10 +31,17 @@ type MiniSiteProps = {
   data: MiniSiteData
   /** Larger type + spacing for the hero feature placement. */
   featured?: boolean
+  /** Drop the desktop browser chrome (used inside the phone mockup). */
+  chromeless?: boolean
   className?: string
 }
 
-export function MiniSite({ data, featured = false, className = '' }: MiniSiteProps) {
+export function MiniSite({
+  data,
+  featured = false,
+  chromeless = false,
+  className = '',
+}: MiniSiteProps) {
   const styleVars = {
     '--ms-bg': data.theme.bg,
     '--ms-surface': data.theme.surface,
@@ -55,18 +62,20 @@ export function MiniSite({ data, featured = false, className = '' }: MiniSitePro
       aria-label={`Example ${data.category} website Kazoom built for ${data.name}`}
       style={styleVars}
     >
-      <div className={styles.chrome} aria-hidden="true">
-        <span className={styles.dots}>
-          <i /> <i /> <i />
-        </span>
-        <span className={styles.url}>
-          <svg viewBox="0 0 16 16" className={styles.lock}>
-            <rect x="3.5" y="7" width="9" height="6.5" rx="1.6" />
-            <path d="M5.5 7V5.3a2.5 2.5 0 0 1 5 0V7" fill="none" />
-          </svg>
-          {data.domain}
-        </span>
-      </div>
+      {!chromeless && (
+        <div className={styles.chrome} aria-hidden="true">
+          <span className={styles.dots}>
+            <i /> <i /> <i />
+          </span>
+          <span className={styles.url}>
+            <svg viewBox="0 0 16 16" className={styles.lock}>
+              <rect x="3.5" y="7" width="9" height="6.5" rx="1.6" />
+              <path d="M5.5 7V5.3a2.5 2.5 0 0 1 5 0V7" fill="none" />
+            </svg>
+            {data.domain}
+          </span>
+        </div>
+      )}
 
       <div className={styles.viewport} aria-hidden="true">
         <header className={styles.msNav}>

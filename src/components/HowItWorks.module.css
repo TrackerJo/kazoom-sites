@@ -14,30 +14,32 @@
 }
 
 .steps {
+  --gap: clamp(28px, 4vw, 56px);
+  --disc: 64px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(28px, 4vw, 56px);
-  counter-reset: step;
+  gap: var(--gap);
 }
 
 .step {
   position: relative;
 }
 
-/* Connecting line between markers (desktop) */
+/* Dotted flow line, anchored to the disc center and tracking the fluid gap */
 .step::after {
   content: '';
   position: absolute;
-  top: 29px;
-  left: 78px;
-  right: -28px;
+  top: calc(var(--disc) / 2 - 1px);
+  left: calc(var(--disc) + 16px);
+  right: calc(var(--gap) * -1 + 14px);
   height: 2px;
-  background: linear-gradient(
-    to right,
-    var(--coral) 0 14px,
-    transparent 14px
+  background-image: radial-gradient(
+    circle,
+    var(--coral) 1.6px,
+    transparent 1.6px
   );
-  background-size: 12px 2px;
+  background-size: 11px 2px;
+  background-position: left center;
   background-repeat: repeat-x;
   opacity: 0.5;
 }
@@ -46,33 +48,40 @@
 }
 
 .marker {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
-.num {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: 1.4rem;
-  color: var(--coral-strong);
-  width: 30px;
-}
-.iconWrap {
+.disc {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  width: var(--disc);
+  height: var(--disc);
+  border-radius: 999px;
+  background: var(--coral-soft);
   color: var(--coral-strong);
-  box-shadow: var(--shadow-soft);
 }
-.iconWrap svg {
-  width: 26px;
-  height: 26px;
+.disc svg {
+  width: 28px;
+  height: 28px;
+}
+.num {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 999px;
+  background: var(--coral-strong);
+  color: var(--on-coral);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1;
+  /* Match the section background so the badge reads as lifted off the disc */
+  border: 3px solid var(--cream-2);
 }
 
 .stepTitle {
