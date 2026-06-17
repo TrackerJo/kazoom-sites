@@ -1,0 +1,118 @@
+.section {
+  padding: clamp(64px, 9vw, 110px) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(36px, 5vw, 72px);
+  align-items: start;
+}
+
+.aside {
+  position: sticky;
+  top: 100px;
+}
+.title {
+  margin-top: 16px;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  max-width: 16ch;
+}
+.help {
+  margin-top: 20px;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 32ch;
+}
+.helpLink {
+  font-weight: 600;
+  color: var(--coral-strong);
+  text-decoration: underline;
+  text-decoration-color: var(--coral-soft);
+  text-underline-offset: 3px;
+}
+.helpLink:hover {
+  text-decoration-color: var(--coral);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+.item {
+  border-top: 1px solid var(--border);
+}
+.item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: 100%;
+  padding: 24px 4px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.08rem, 1.6vw, 1.28rem);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+.question:hover {
+  color: var(--coral-deep);
+}
+
+.icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--coral-soft);
+  color: var(--coral-deep);
+  transition: transform 0.45s var(--ease-out);
+}
+.icon svg {
+  width: 20px;
+  height: 20px;
+}
+.iconOpen {
+  transform: rotate(135deg);
+}
+
+.answerWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ease-out);
+}
+.answerOpen {
+  grid-template-rows: 1fr;
+}
+.answerInner {
+  overflow: hidden;
+}
+.answer {
+  padding: 0 56px 26px 4px;
+  font-size: 1.06rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .aside {
+    position: static;
+  }
+}

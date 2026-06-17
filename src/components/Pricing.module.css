@@ -1,0 +1,129 @@
+.section {
+  padding: clamp(64px, 9vw, 110px) 0;
+  background: var(--cream-2);
+  border-block: 1px solid var(--border);
+}
+
+.head {
+  max-width: 40ch;
+  margin-bottom: clamp(36px, 4vw, 52px);
+}
+.title {
+  margin-top: 16px;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+}
+.intro {
+  margin-top: 16px;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+}
+
+.offer {
+  padding: clamp(32px, 4vw, 48px);
+  background: linear-gradient(165deg, var(--coral-strong), var(--coral-deep));
+  color: var(--on-coral);
+}
+.plan {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  color: var(--on-coral-dim);
+}
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 14px 0 4px;
+}
+.amount {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(3.4rem, 7vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--on-coral);
+}
+.per {
+  font-family: var(--body);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--on-coral-dim);
+}
+.note {
+  font-family: var(--body);
+  font-size: 0.95rem;
+  color: var(--on-coral-dim);
+  margin-bottom: 26px;
+}
+.offer .btn,
+.offer :global(.btn) {
+  width: 100%;
+}
+.guarantee {
+  margin-top: 18px;
+  font-family: var(--body);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--on-coral-dim);
+}
+
+.includes {
+  padding: clamp(32px, 4vw, 48px);
+}
+.includesLabel {
+  display: block;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+.list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.list svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  color: var(--coral-strong);
+  background: var(--coral-soft);
+  border-radius: 999px;
+  padding: 3px;
+}
+
+@media (max-width: 820px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 460px) {
+  .list {
+    grid-template-columns: 1fr;
+  }
+}

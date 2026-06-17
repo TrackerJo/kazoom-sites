@@ -1,0 +1,170 @@
+.hero {
+  position: relative;
+  padding: clamp(48px, 8vw, 92px) 0 clamp(72px, 9vw, 120px);
+  overflow: hidden;
+}
+
+/* Warm coral wash that carries the brand into the fold */
+.glow {
+  position: absolute;
+  inset: -20% -10% auto 30%;
+  height: 130%;
+  background:
+    radial-gradient(
+      48% 52% at 78% 32%,
+      oklch(0.84 0.11 40 / 0.6),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 44% at 96% 70%,
+      oklch(0.8 0.13 28 / 0.42),
+      transparent 72%
+    );
+  filter: blur(8px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.04fr 1fr;
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+}
+
+.copy {
+  max-width: 36rem;
+}
+
+.title {
+  margin: 20px 0 0;
+  font-size: clamp(2.6rem, 6.2vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+.accent {
+  color: var(--coral-strong);
+}
+
+.sub {
+  margin-top: 22px;
+  max-width: 33rem;
+  font-size: clamp(1.08rem, 1.5vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 28px;
+}
+.chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.chips svg {
+  width: 18px;
+  height: 18px;
+  color: var(--coral-strong);
+  background: var(--coral-soft);
+  border-radius: 999px;
+  padding: 3px;
+}
+
+/* ---------- Visual ---------- */
+
+.visualReveal {
+  position: relative;
+}
+
+.visual {
+  position: relative;
+  perspective: 1600px;
+}
+
+.desktop {
+  transform: rotateY(-9deg) rotateX(3deg) rotate(0.6deg);
+  transform-origin: center right;
+  transition: transform 0.7s var(--ease-out);
+}
+.visual:hover .desktop {
+  transform: rotateY(-5deg) rotateX(2deg);
+}
+
+.phone {
+  position: absolute;
+  left: -8%;
+  bottom: -12%;
+  width: 188px;
+  padding: 8px;
+  background: oklch(0.28 0.02 40);
+  border-radius: 28px;
+  box-shadow:
+    0 4px 10px oklch(0.3 0.04 40 / 0.2),
+    0 30px 60px oklch(0.35 0.07 38 / 0.3);
+  transform: rotate(-3deg);
+}
+.notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 5px;
+  border-radius: 999px;
+  background: oklch(0.5 0.02 40);
+  z-index: 2;
+}
+.phoneSite {
+  border-radius: 20px;
+  box-shadow: none;
+  border: none;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .copy {
+    max-width: none;
+  }
+  .glow {
+    inset: -10% -20% auto 10%;
+  }
+  .visual {
+    max-width: 560px;
+  }
+  .desktop {
+    transform: none;
+  }
+  .visual:hover .desktop {
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .phone {
+    width: 138px;
+    left: -4%;
+    bottom: -10%;
+  }
+  .chips {
+    gap: 8px 16px;
+  }
+}

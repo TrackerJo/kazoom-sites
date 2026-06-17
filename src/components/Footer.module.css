@@ -1,0 +1,121 @@
+.footer {
+  padding: clamp(56px, 7vw, 88px) 0 36px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.3fr 2fr;
+  gap: clamp(36px, 5vw, 80px);
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.32rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.mark {
+  width: 32px;
+  height: 32px;
+}
+.blurb {
+  margin-top: 18px;
+  max-width: 34ch;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.social {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+.social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-soft);
+  transition:
+    transform 0.4s var(--ease-out),
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.social a:hover {
+  transform: translateY(-2px);
+  color: var(--coral-deep);
+  border-color: var(--coral);
+}
+.social svg {
+  width: 21px;
+  height: 21px;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.colHeading {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.cols ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cols a {
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  transition: color 0.2s ease;
+}
+.cols a:hover {
+  color: var(--coral-deep);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 28px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.legal {
+  display: flex;
+  gap: 22px;
+}
+.legal a:hover {
+  color: var(--coral-deep);
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .cols {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .cols {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,98 @@
+.section {
+  padding: clamp(64px, 9vw, 110px) 0;
+  background: var(--cream-2);
+  border-block: 1px solid var(--border);
+}
+
+.head {
+  max-width: 30ch;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+.title {
+  margin-top: 16px;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+}
+
+/* Connecting line between markers (desktop) */
+.step::after {
+  content: '';
+  position: absolute;
+  top: 29px;
+  left: 78px;
+  right: -28px;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--coral) 0 14px,
+    transparent 14px
+  );
+  background-size: 12px 2px;
+  background-repeat: repeat-x;
+  opacity: 0.5;
+}
+.steps .step:last-child::after {
+  display: none;
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.num {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--coral-strong);
+  width: 30px;
+}
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--coral-strong);
+  box-shadow: var(--shadow-soft);
+}
+.iconWrap svg {
+  width: 26px;
+  height: 26px;
+}
+
+.stepTitle {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.stepBody {
+  font-size: 1.04rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 34ch;
+}
+
+@media (max-width: 860px) {
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    max-width: 480px;
+  }
+  .step::after {
+    display: none;
+  }
+}

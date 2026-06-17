@@ -1,0 +1,261 @@
+.frame {
+  margin: 0;
+  border-radius: 14px;
+  background: oklch(0.99 0.004 80);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-frame);
+  overflow: hidden;
+  font-family: var(--ms-font);
+  container-type: inline-size;
+  transition:
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out);
+}
+
+/* Browser chrome */
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: oklch(0.96 0.006 70);
+  border-bottom: 1px solid var(--border);
+}
+
+.dots {
+  display: inline-flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: oklch(0.85 0.01 60);
+}
+.dots i:nth-child(1) {
+  background: oklch(0.78 0.13 28);
+}
+.dots i:nth-child(2) {
+  background: oklch(0.85 0.11 85);
+}
+.dots i:nth-child(3) {
+  background: oklch(0.82 0.1 150);
+}
+
+.url {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  font-family: var(--body);
+  font-size: 0.72rem;
+  color: var(--muted);
+  background: oklch(0.99 0.004 80);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.lock {
+  width: 11px;
+  height: 11px;
+  stroke: oklch(0.7 0.1 150);
+  stroke-width: 1.3;
+  fill: none;
+  flex-shrink: 0;
+}
+
+/* The rendered mini page */
+.viewport {
+  background: var(--ms-bg);
+  color: var(--ms-ink);
+}
+
+.msNav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  background: var(--ms-surface);
+  border-bottom: 1px solid var(--ms-border);
+}
+.msBrand {
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+  color: var(--ms-ink);
+}
+.msLinks {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+  font-size: 0.66rem;
+  color: var(--ms-sub);
+  font-family: var(--body);
+}
+.msNavCta {
+  font-family: var(--body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--ms-accent-ink);
+  background: var(--ms-accent);
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+.msHero {
+  position: relative;
+  padding: 26px 18px 30px;
+  background: linear-gradient(150deg, var(--ms-hero-from), var(--ms-hero-to));
+  overflow: hidden;
+}
+.msBlob {
+  position: absolute;
+  inset: 0 -10% auto auto;
+  width: 62%;
+  height: 100%;
+  opacity: 0.5;
+  color: var(--ms-accent);
+  pointer-events: none;
+}
+.msBlob circle {
+  fill: currentColor;
+  opacity: 0.4;
+}
+.msHeroText {
+  position: relative;
+  max-width: 78%;
+}
+.msKicker {
+  font-family: var(--body);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ms-accent-ink);
+  background: var(--ms-accent);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+.msHeading {
+  margin: 10px 0 6px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ms-ink);
+}
+.msSub {
+  font-family: var(--body);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--ms-sub);
+  max-width: 26ch;
+}
+.msCta {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ms-accent-ink);
+  background: var(--ms-accent);
+  padding: 8px 16px;
+  border-radius: 999px;
+}
+.msBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--body);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--ms-ink);
+  background: var(--ms-surface);
+  border: 1px solid var(--ms-border);
+  padding: 5px 10px;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px oklch(0.4 0.05 40 / 0.12);
+}
+
+.msItems {
+  padding: 18px 16px 20px;
+}
+.msItemsLabel {
+  display: block;
+  font-family: var(--body);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ms-sub);
+  margin-bottom: 12px;
+}
+.msGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.msCard {
+  display: flex;
+  flex-direction: column;
+  background: var(--ms-surface);
+  border: 1px solid var(--ms-border);
+  border-radius: 10px;
+  padding: 8px;
+}
+.msThumb {
+  height: 42px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+.msCardTitle {
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--ms-ink);
+}
+.msCardMeta {
+  font-family: var(--body);
+  font-size: 0.66rem;
+  color: var(--ms-sub);
+  margin-top: 1px;
+}
+
+.msFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--ms-surface);
+  border-top: 1px solid var(--ms-border);
+  font-family: var(--body);
+  font-size: 0.64rem;
+  color: var(--ms-sub);
+}
+
+/* Featured (hero) sizing bump */
+.featured .msHeading {
+  font-size: 1.7rem;
+}
+
+@container (max-width: 340px) {
+  .msHeading {
+    font-size: 1.25rem;
+  }
+  .msLinks {
+    display: none;
+  }
+  .msHeroText {
+    max-width: 100%;
+  }
+  .msGrid {
+    gap: 7px;
+  }
+  .msThumb {
+    height: 34px;
+  }
+}

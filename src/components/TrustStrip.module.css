@@ -1,0 +1,32 @@
+.strip {
+  padding: 14px 0 30px;
+  text-align: center;
+}
+
+.lead {
+  font-family: var(--body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 12px;
+  margin-top: 18px;
+}
+.tags li {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--pill);
+  padding: 9px 18px;
+  box-shadow: var(--shadow-soft);
+}
