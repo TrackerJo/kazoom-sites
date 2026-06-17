@@ -1,26 +1,26 @@
-import type { ComponentType, SVGProps } from 'react'
-import { Edit, Sparkle, Globe } from './icons'
-import { Reveal } from './Reveal'
-import { useReveal } from '../lib/useReveal'
-import styles from './HowItWorks.module.css'
+import type { ComponentType, SVGProps } from "react";
+import { Edit, Sparkle, Globe } from "./icons";
+import { Reveal } from "./Reveal";
+import { useReveal } from "../lib/useReveal";
+import styles from "./HowItWorks.module.css";
 
 const STEPS = [
   {
     icon: Edit,
-    title: 'Tell us about your business',
-    body: 'Answer a few simple questions about what you do. It takes about ten minutes, and there is no jargon to wade through.',
+    title: "Tell us about your business",
+    body: "Answer a few simple questions about what you do. It takes about ten minutes, and there is no jargon to wade through.",
   },
   {
     icon: Sparkle,
-    title: 'We build your site',
-    body: 'Our team designs a site around your business, with your words, your colors and your photos. You review it and ask for any changes.',
+    title: "We build your site",
+    body: "Our team designs a site around your business, with your words, your colors and your photos. You review it and ask for any changes.",
   },
   {
     icon: Globe,
-    title: 'Go live and get found',
-    body: 'We publish it, connect your domain and set you up to show on Google. After that, updates and hosting are on us.',
+    title: "Go live and get found",
+    body: "We publish it, connect your domain and set you up to show on Google. After that, updates and hosting are on us.",
   },
-]
+];
 
 function Step({
   index,
@@ -28,16 +28,16 @@ function Step({
   title,
   body,
 }: {
-  index: number
-  icon: ComponentType<SVGProps<SVGSVGElement>>
-  title: string
-  body: string
+  index: number;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  title: string;
+  body: string;
 }) {
-  const { ref, visible } = useReveal<HTMLLIElement>()
+  const { ref, visible } = useReveal<HTMLLIElement>();
   return (
     <li
       ref={ref}
-      className={`${styles.step} reveal ${visible ? 'reveal--in' : ''}`}
+      className={`${styles.step} reveal ${visible ? "reveal--in" : ""}`}
       style={{ transitionDelay: `${index * 110}ms` }}
     >
       <div className={styles.marker}>
@@ -49,7 +49,7 @@ function Step({
       <h3 className={styles.stepTitle}>{title}</h3>
       <p className={styles.stepBody}>{body}</p>
     </li>
-  )
+  );
 }
 
 export function HowItWorks() {
@@ -78,5 +78,5 @@ export function HowItWorks() {
         </ol>
       </div>
     </section>
-  )
+  );
 }
