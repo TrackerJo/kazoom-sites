@@ -18,6 +18,7 @@ const LINKS = [
 
 export function Nav() {
   const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('')
   const { scrollY } = useScroll()
   // The glass backing fades in as the page leaves the fold (no scroll listener).
   const glass = useTransform(scrollY, [0, 90], [0, 1])
@@ -29,6 +30,21 @@ export function Nav() {
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [open])
+
+  // Scroll-spy: the link whose section is crossing the viewport middle is current.
+  useEffect(() => {
+    const sections = LINKS.map((l) => document.getElementById(l.href.slice(1)))
+      .filter((el): el is HTMLElement => el !== null)
+    if (!sections.length) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(e.target.id)
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    )
+    sections.forEach((s) => obs.observe(s))
+    return () => obs.disconnect()
+  }, [])
 
   return (
     <motion.header
@@ -51,7 +67,11 @@ export function Nav() {
 
         <nav className={styles.links} aria-label="Primary">
           {LINKS.map((link) => (
-            <a key={link.href} href={link.href}>
+            <a
+              key={link.href}
+              href={link.href}
+              aria-current={active === link.href.slice(1) ? 'true' : undefined}
+            >
               {link.label}
             </a>
           ))}
@@ -98,7 +118,12 @@ export function Nav() {
           >
             <nav aria-label="Mobile">
               {LINKS.map((link) => (
-                <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active === link.href.slice(1) ? 'true' : undefined}
+                  onClick={() => setOpen(false)}
+                >
                   {link.label}
                 </a>
               ))}

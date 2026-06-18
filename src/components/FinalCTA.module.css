@@ -4,7 +4,9 @@
   margin: clamp(40px, 6vw, 80px) clamp(16px, 4vw, 40px) 0;
   padding: clamp(56px, 8vw, 100px) clamp(24px, 5vw, 64px);
   border-radius: var(--radius-xl);
-  background: linear-gradient(150deg, var(--coral-strong), var(--coral-deep));
+  /* coral-deep base so body copy (on-coral-dim) clears WCAG AA (5.2:1). The
+     brighter coral warmth comes from the decorative .blob, not the text bg. */
+  background: var(--coral-deep);
   color: var(--on-coral);
   text-align: center;
 }
@@ -22,24 +24,15 @@
   animation: aurora-drift 16s var(--ease-out) infinite;
 }
 
-.sparks {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.spark {
-  position: absolute;
-  color: oklch(1 0 0 / 0.55);
-  animation: float-soft 5s ease-in-out infinite;
-}
-.spark svg {
-  width: 100%;
-  height: 100%;
-}
-
 .inner {
   position: relative;
   z-index: 1;
+}
+
+/* On the coral panel the default coral focus ring all but disappears, so
+   anything focusable inside switches to a light ring. Inputs override below. */
+.section :focus-visible {
+  outline-color: var(--on-coral);
 }
 
 .title {
@@ -56,17 +49,142 @@
   line-height: 1.55;
   color: var(--on-coral-dim);
 }
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 34px;
+/* ---------- Start form ---------- */
+
+.form {
+  margin: 34px auto 0;
+  max-width: 540px;
+  text-align: left;
 }
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--on-coral);
+  padding-left: 2px;
+}
+
+.input {
+  width: 100%;
+  font-family: var(--body);
+  font-size: 1rem;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1.5px solid transparent;
+  background: var(--surface);
+  color: var(--ink);
+  transition:
+    box-shadow 0.25s var(--ease-out),
+    border-color 0.2s ease;
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--cream);
+  box-shadow: 0 0 0 3px oklch(1 0 0 / 0.55);
+}
+
+.input.invalid {
+  border-color: oklch(0.97 0.05 60);
+  box-shadow: 0 0 0 3px oklch(1 0 0 / 0.32);
+}
+
+.error {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--body);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--on-coral);
+}
+.error::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--on-coral);
+}
+
+.submitRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.alt {
+  margin-top: 22px;
+  font-family: var(--body);
+  font-size: 0.98rem;
+  color: var(--on-coral-dim);
+}
+.alt a {
+  color: var(--on-coral);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+/* ---------- Success state ---------- */
+
+.done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.doneIcon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--coral-deep);
+  box-shadow: 0 12px 26px oklch(0.3 0.06 35 / 0.22);
+}
+.doneIcon svg {
+  width: 32px;
+  height: 32px;
+}
+.done .title:focus-visible {
+  outline-offset: 8px;
+}
+.done .sub strong {
+  color: var(--on-coral);
+  font-weight: 700;
+}
+
 .fine {
-  margin-top: 24px;
+  margin-top: 18px;
   font-family: var(--body);
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--on-coral-dim);
+}
+
+@media (max-width: 560px) {
+  .fields {
+    grid-template-columns: 1fr;
+  }
 }

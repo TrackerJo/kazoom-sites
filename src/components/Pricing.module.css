@@ -33,7 +33,8 @@
   position: relative;
   overflow: hidden;
   padding: clamp(32px, 4vw, 48px);
-  background: linear-gradient(165deg, var(--coral-strong), var(--coral-deep));
+  /* coral-deep base so the dimmed plan/price/guarantee copy clears WCAG AA. */
+  background: var(--coral-deep);
   color: var(--on-coral);
 }
 .sheen {
@@ -45,7 +46,7 @@
   background: linear-gradient(
     100deg,
     transparent,
-    oklch(1 0 0 / 0.28),
+    oklch(1 0 0 / 0.16),
     transparent
   );
   transform: skewX(-16deg);

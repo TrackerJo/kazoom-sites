@@ -370,22 +370,3 @@ ul {
   }
 }
 
-/* A warm coral wordmark gradient, used once on a single hero word. */
-.accent-gradient {
-  background: linear-gradient(
-    104deg,
-    var(--coral-strong) 0%,
-    oklch(0.66 0.19 18) 52%,
-    var(--coral-deep) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .accent-gradient {
-    background: none;
-    color: var(--coral-strong);
-  }
-}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { ArrowRight } from './icons'
+import { ArrowRight, Pause, Play } from './icons'
 import { EASE_OUT } from '../lib/anim'
 import styles from './Testimonials.module.css'
 
@@ -40,6 +40,7 @@ const variants = {
 export function Testimonials() {
   const reduce = useReducedMotion()
   const [[index, dir], setState] = useState<[number, number]>([0, 0])
+  const [paused, setPaused] = useState(false)
   const active = QUOTES[index]
 
   const paginate = (d: number) =>
@@ -47,10 +48,10 @@ export function Testimonials() {
   const goTo = (i: number) => setState(([cur]) => [i, i > cur ? 1 : -1])
 
   useEffect(() => {
-    if (reduce) return
+    if (reduce || paused) return
     const id = setTimeout(() => paginate(1), 6500)
     return () => clearTimeout(id)
-  }, [index, reduce])
+  }, [index, reduce, paused])
 
   return (
     <section className={styles.section} id="stories" aria-label="What owners say" aria-roledescription="carousel">
@@ -112,6 +113,21 @@ export function Testimonials() {
               ))}
             </div>
             <div className={styles.arrows}>
+              {!reduce && (
+                <button
+                  type="button"
+                  className={styles.arrow}
+                  aria-pressed={paused}
+                  aria-label={
+                    paused
+                      ? 'Resume automatic rotation'
+                      : 'Pause automatic rotation'
+                  }
+                  onClick={() => setPaused((v) => !v)}
+                >
+                  {paused ? <Play /> : <Pause />}
+                </button>
+              )}
               <button
                 type="button"
                 className={styles.arrow}

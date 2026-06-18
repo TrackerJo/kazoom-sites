@@ -71,8 +71,12 @@
 .links a:hover {
   color: var(--ink);
 }
-.links a:hover::after {
+.links a:hover::after,
+.links a[aria-current='true']::after {
   transform: scaleX(1);
+}
+.links a[aria-current='true'] {
+  color: var(--ink);
 }
 
 .actions {
@@ -127,6 +131,9 @@
   font-weight: 500;
   color: var(--ink);
   border-bottom: 1px solid var(--border);
+}
+.mobile nav a[aria-current='true'] {
+  color: var(--coral-deep);
 }
 .mobile :global(.btn) {
   margin-top: 16px;

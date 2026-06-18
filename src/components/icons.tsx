@@ -124,6 +124,19 @@ export const Plus = (p: SVGProps<SVGSVGElement>) => (
   </Icon>
 )
 
+export const Pause = (p: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...p}>
+    <rect x="7" y="5.5" width="3.4" height="13" rx="1.2" />
+    <rect x="13.6" y="5.5" width="3.4" height="13" rx="1.2" />
+  </svg>
+)
+
+export const Play = (p: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...p}>
+    <path d="M8 5.6v12.8a1 1 0 0 0 1.5.87l10.5-6.4a1 1 0 0 0 0-1.74L9.5 4.73A1 1 0 0 0 8 5.6Z" />
+  </svg>
+)
+
 /* Brand / social glyphs (filled, currentColor) */
 
 export const KazoomMark = (p: SVGProps<SVGSVGElement>) => (

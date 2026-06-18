@@ -144,7 +144,6 @@
 }
 .float {
   position: relative;
-  animation: float-soft 7s ease-in-out infinite;
 }
 .desktop {
   transform: rotate(0.4deg);

@@ -41,8 +41,16 @@ export function Counter({ to, prefix = '', suffix = '' }: CounterProps) {
   }, [inView, to, reduce])
 
   return (
-    <span ref={ref} aria-hidden="true">
-      {prefix}0{suffix}
-    </span>
+    <>
+      {/* Animated digits are decorative; screen readers get the final value. */}
+      <span ref={ref} aria-hidden="true">
+        {prefix}0{suffix}
+      </span>
+      <span className="visually-hidden">
+        {prefix}
+        {to}
+        {suffix}
+      </span>
+    </>
   )
 }

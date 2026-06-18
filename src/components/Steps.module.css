@@ -13,20 +13,26 @@
   font-size: clamp(2rem, 3.6vw, 3rem);
 }
 
-/* Each step occupies a tall scroll zone; its card pins while you pass it. */
-.stack {
-  position: relative;
+/* ---------- Scroll-driven stacking deck (wide screens, motion allowed) ----------
+   .pin is a tall scroll track. The deck sticks inside it while you scroll, and
+   each step card translates up into the pile, newest on top, leaving a sliver of
+   the one beneath. The assembled deck holds, then the whole section scrolls on.
+   Because every card is transform-driven (not CSS sticky), it reverses cleanly
+   and never strands a half-built stack. */
+.pin {
+  height: clamp(1150px, 150vh, 1800px);
 }
-.step {
-  /* Clamped (not raw vh) so the pin zone stays sane on very tall viewports. */
-  min-height: clamp(520px, 72vh, 720px);
-  display: flex;
-  align-items: center;
+.sticky {
+  position: sticky;
+  top: clamp(92px, 12vh, 132px);
+}
+.deck {
+  position: relative;
+  /* Fits the tallest card plus the peeking slivers above it. */
+  min-height: clamp(440px, 58vh, 560px);
 }
 
 .card {
-  position: sticky;
-  top: 96px;
   width: 100%;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -38,8 +44,25 @@
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lift);
   overflow: hidden;
-  transform-origin: center top;
+}
+
+.deckCard {
+  position: absolute;
+  left: 0;
+  right: 0;
   will-change: transform, opacity;
+}
+
+/* Plain vertical list: mobile and reduced-motion fallback. */
+.list {
+  display: flex;
+  flex-direction: column;
+}
+.listCard {
+  position: relative;
+}
+.listCard:not(:last-child) {
+  margin-bottom: clamp(20px, 3vw, 32px);
 }
 
 .cardText {
@@ -138,12 +161,7 @@
 }
 
 @media (max-width: 820px) {
-  .step {
-    min-height: 0;
-    margin-bottom: 20px;
-  }
   .card {
-    position: static;
     grid-template-columns: 1fr;
   }
   .cardVisual {
