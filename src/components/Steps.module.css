@@ -1,101 +1,251 @@
 .section {
-  padding: clamp(64px, 9vw, 110px) 0 clamp(40px, 6vw, 80px);
+  padding: clamp(64px, 9vw, 110px) 0 clamp(56px, 7vw, 96px);
   background: var(--cream-2);
   border-block: 1px solid var(--border);
 }
 
 .head {
   max-width: 40ch;
-  margin-bottom: clamp(20px, 3vw, 36px);
+  margin-bottom: clamp(28px, 4vw, 48px);
 }
 .title {
   margin-top: 16px;
   font-size: clamp(2rem, 3.6vw, 3rem);
 }
 
-/* ---------- Scroll-driven stacking deck (wide screens, motion allowed) ----------
-   .pin is a tall scroll track. The deck sticks inside it while you scroll, and
-   each step card translates up into the pile, newest on top, leaving a sliver of
-   the one beneath. The assembled deck holds, then the whole section scrolls on.
-   Because every card is transform-driven (not CSS sticky), it reverses cleanly
-   and never strands a half-built stack. */
-.pin {
-  height: clamp(1150px, 150vh, 1800px);
-}
-.sticky {
-  position: sticky;
-  top: clamp(92px, 12vh, 132px);
-}
-.deck {
-  position: relative;
-  /* Fits the tallest card plus the peeking slivers above it. */
-  min-height: clamp(440px, 58vh, 560px);
-}
+/* ============================================================
+   Interactive stepper — a left rail of steps connected by a
+   filling track, beside a stage that shows one step at full
+   size. Auto-advances, pauses on hover / focus / user toggle.
+   ============================================================ */
 
-.card {
-  width: 100%;
+.stepper {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(20px, 3vw, 44px);
+  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(28px, 4vw, 64px);
   align-items: center;
-  padding: clamp(28px, 3.4vw, 48px);
+  padding: clamp(24px, 3vw, 44px);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lift);
-  overflow: hidden;
 }
 
-.deckCard {
-  position: absolute;
-  left: 0;
-  right: 0;
-  will-change: transform, opacity;
-}
+/* ---------- rail ---------- */
 
-/* Plain vertical list: mobile and reduced-motion fallback. */
-.list {
+.rail {
+  position: relative;
   display: flex;
   flex-direction: column;
-}
-.listCard {
-  position: relative;
-}
-.listCard:not(:last-child) {
-  margin-bottom: clamp(20px, 3vw, 32px);
+  gap: 6px;
 }
 
-.cardText {
-  min-width: 0;
+/* Connector running through the node centers; node is 44px, centered at 22px. */
+.track {
+  position: absolute;
+  left: 22px;
+  top: 34px;
+  bottom: 86px; /* clears the toggle button below the last step */
+  width: 2px;
+  border-radius: 2px;
+  background: var(--border-strong);
+  overflow: hidden;
 }
-.num {
+.trackFill {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+  background: linear-gradient(var(--coral), var(--coral-strong));
+}
+
+.railItem {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 12px;
+  transition:
+    background-color 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out);
+}
+
+.node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   font-family: var(--display);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.1rem;
+  background: var(--surface);
+  color: var(--muted);
+  border: 2px solid var(--border-strong);
+  transition:
+    background-color 0.4s var(--ease-out),
+    color 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out),
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+}
+.node svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2.4;
+}
+
+.railTitle {
+  display: block;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.08rem;
+  line-height: 1.2;
+  color: var(--ink-soft);
+  transition: color 0.4s var(--ease-out);
+}
+.railBlurb {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: var(--muted);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.45s var(--ease-out),
+    opacity 0.4s var(--ease-out),
+    margin-top 0.45s var(--ease-out);
+}
+
+.done .node {
+  background: var(--coral-strong);
+  border-color: var(--coral-strong);
+  color: var(--on-coral);
+}
+.done .railTitle {
+  color: var(--ink);
+}
+
+.active {
+  background: var(--coral-softer);
+  border-color: var(--border);
+}
+.active .node {
+  background: var(--coral-strong);
+  border-color: var(--coral-strong);
+  color: var(--on-coral);
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px oklch(0.55 0.14 35 / 0.34);
+}
+.active .railTitle {
+  color: var(--ink);
+}
+.active .railBlurb {
+  max-height: 3em;
+  opacity: 1;
+  margin-top: 4px;
+}
+
+.railItem:focus-visible {
+  outline: 2.5px solid var(--coral-strong);
+  outline-offset: 2px;
+}
+@media (hover: hover) {
+  .next:hover {
+    background: var(--cream-2);
+  }
+  .next:hover .railTitle {
+    color: var(--ink);
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  margin-left: 4px;
+  align-self: flex-start;
+  padding: 8px 14px 8px 10px;
+  font-family: var(--body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--pill);
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+.toggle svg {
+  width: 15px;
+  height: 15px;
+}
+@media (hover: hover) {
+  .toggle:hover {
+    color: var(--coral-deep);
+    border-color: var(--coral);
+    background: var(--coral-softer);
+  }
+}
+
+/* ---------- stage ---------- */
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.6vw, 32px);
+  min-height: 460px;
+}
+
+.stageText {
+  min-height: 188px;
+}
+.stageNum {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.92rem;
   letter-spacing: 0.04em;
   color: var(--coral-strong);
+  margin-bottom: 10px;
 }
-.cardTitle {
-  margin: 10px 0 14px;
-  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
-  max-width: 16ch;
+.stageTotal {
+  color: var(--muted);
 }
-.cardBody {
-  font-size: 1.08rem;
+.stageTitle {
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  max-width: 18ch;
+  margin-bottom: 14px;
+}
+.stageBody {
+  font-size: 1.1rem;
   line-height: 1.55;
   color: var(--ink-soft);
-  max-width: 42ch;
+  max-width: 46ch;
 }
 .points {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 10px 22px;
   margin-top: 22px;
 }
 .points li {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   font-weight: 500;
   color: var(--ink);
 }
@@ -109,63 +259,330 @@
   padding: 3px;
 }
 
-/* Vivid coral tile so each step reads as a finished, designed object. */
-.cardVisual {
+/* The coral tile that holds each step's mini-scene. */
+.stageVisual {
   position: relative;
-  align-self: stretch;
-  min-height: 280px;
+  flex: 1;
+  min-height: 240px;
   border-radius: var(--radius-lg);
   background: linear-gradient(150deg, var(--coral-strong), var(--coral-deep));
   overflow: hidden;
   display: grid;
   place-items: center;
-}
-.disc {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 96px;
-  height: 96px;
-  border-radius: 28px;
-  background: oklch(1 0 0 / 0.16);
-  border: 1px solid oklch(1 0 0 / 0.28);
-  backdrop-filter: blur(4px);
-  color: var(--on-coral);
-  animation: float-soft 6s ease-in-out infinite;
-}
-.disc svg {
-  width: 44px;
-  height: 44px;
+  padding: clamp(20px, 3vw, 36px);
 }
 .orbA,
 .orbB {
   position: absolute;
   border-radius: 50%;
-  filter: blur(26px);
+  filter: blur(30px);
+  pointer-events: none;
 }
 .orbA {
-  width: 220px;
-  height: 220px;
-  top: -70px;
-  right: -50px;
+  width: 240px;
+  height: 240px;
+  top: -80px;
+  right: -60px;
   background: oklch(0.82 0.13 55 / 0.5);
 }
 .orbB {
-  width: 180px;
-  height: 180px;
-  bottom: -70px;
-  left: -40px;
+  width: 200px;
+  height: 200px;
+  bottom: -80px;
+  left: -50px;
   background: oklch(0.6 0.16 12 / 0.5);
 }
+.sceneWrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
 
-@media (max-width: 820px) {
-  .card {
+/* ============================================================
+   Mini-scenes (white-on-coral)
+   ============================================================ */
+
+.scene {
+  position: relative;
+  width: min(100%, 420px);
+  display: grid;
+  gap: 14px;
+}
+
+/* a soft frosted "window" panel */
+.win {
+  background: oklch(1 0 0 / 0.16);
+  border: 1px solid oklch(1 0 0 / 0.28);
+  border-radius: 18px;
+  backdrop-filter: blur(6px);
+  padding: 16px;
+  box-shadow: 0 18px 40px oklch(0.3 0.08 30 / 0.28);
+  display: grid;
+  gap: 12px;
+}
+
+.bar {
+  display: block;
+  height: 10px;
+  border-radius: 6px;
+  background: oklch(1 0 0 / 0.55);
+  transform-origin: left;
+}
+.barWide {
+  width: 60%;
+}
+
+/* form scene */
+.winHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 4px;
+}
+.winAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: oklch(1 0 0 / 0.85);
+}
+.qRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.qDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid oklch(1 0 0 / 0.7);
+}
+.pill {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: var(--pill);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--coral-deep);
+  background: var(--cream);
+  box-shadow: 0 10px 24px oklch(0.3 0.08 30 / 0.3);
+}
+.pill svg {
+  width: 16px;
+  height: 16px;
+  color: var(--coral-strong);
+}
+
+/* browser scenes (build + live) */
+.winBar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid oklch(1 0 0 / 0.2);
+}
+.tl {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: oklch(1 0 0 / 0.5);
+}
+.urlPill {
+  height: 14px;
+  flex: 1;
+  margin-left: 6px;
+  border-radius: 7px;
+  background: oklch(1 0 0 / 0.3);
+}
+.url {
+  flex: 1;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--on-coral);
+  letter-spacing: 0.01em;
+}
+.liveDot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: oklch(0.82 0.18 145);
+}
+.livePulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid oklch(0.82 0.18 145 / 0.7);
+  animation: live-pulse 2s var(--ease-out) infinite;
+}
+@keyframes live-pulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+.liveTag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--coral-deep);
+  background: var(--cream);
+  padding: 3px 9px;
+  border-radius: var(--pill);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.blockHero {
+  grid-column: 1 / -1;
+  height: 52px;
+  border-radius: 10px;
+  background: oklch(1 0 0 / 0.5);
+}
+.blockA,
+.blockB {
+  height: 36px;
+  border-radius: 10px;
+  background: oklch(1 0 0 / 0.32);
+}
+.swatches {
+  display: flex;
+  gap: 8px;
+}
+.swatch {
+  width: 30px;
+  height: 18px;
+  border-radius: 6px;
+  border: 1px solid oklch(1 0 0 / 0.4);
+}
+
+/* live: floating search result */
+.result {
+  position: relative;
+  justify-self: end;
+  margin-top: -6px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--cream);
+  box-shadow: 0 16px 34px oklch(0.3 0.08 30 / 0.34);
+}
+.pin {
+  display: inline-flex;
+  color: var(--coral-strong);
+}
+.pin svg {
+  width: 26px;
+  height: 26px;
+}
+.resultText {
+  display: grid;
+  gap: 5px;
+}
+.resultName {
+  width: 96px;
+  height: 9px;
+  border-radius: 5px;
+  background: var(--border-strong);
+}
+.stars {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: oklch(0.74 0.15 75);
+}
+
+/* ============================================================
+   Static timeline (mobile + reduced motion)
+   ============================================================ */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 4vw, 32px);
+}
+.tlItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 18px;
+}
+/* connector down the left between nodes */
+.tlItem:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 50px;
+  bottom: calc(-1 * clamp(20px, 4vw, 32px) - 6px);
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(var(--coral) 30%, var(--border-strong));
+}
+.tlItem .node {
+  background: var(--coral-strong);
+  border-color: var(--coral-strong);
+  color: var(--on-coral);
+}
+.tlCard {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(18px, 3vw, 32px);
+  align-items: center;
+  padding: clamp(20px, 3vw, 32px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+.tlText {
+  min-width: 0;
+}
+.tlTitle {
+  font-size: clamp(1.4rem, 4.5vw, 1.8rem);
+  margin-bottom: 12px;
+  max-width: 16ch;
+}
+.tlCard .stageVisual {
+  min-height: 200px;
+}
+
+@media (max-width: 720px) {
+  .tlCard {
     grid-template-columns: 1fr;
   }
-  .cardVisual {
-    min-height: 200px;
+  .tlCard .stageVisual {
     order: -1;
+    min-height: 180px;
+  }
+}
+@media (max-width: 520px) {
+  .tlItem {
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+  }
+  .tlItem .node {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+  .tlItem:not(:last-child)::before {
+    left: 17px;
+    top: 42px;
   }
 }
