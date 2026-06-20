@@ -1,5 +1,4 @@
-# Kazoom — robots.txt
-# Replace the Sitemap URL below with your real domain.
+# Kazoom — robots.txt (https://kazoom.app)
 
 # Search crawlers
 User-agent: *
@@ -34,4 +33,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://kazoom.com/sitemap.xml
+Sitemap: https://kazoom.app/sitemap.xml
