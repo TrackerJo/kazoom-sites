@@ -1,0 +1,36 @@
+# Kazoom — robots.txt (https://kazoom.app)
+
+# Search crawlers
+User-agent: *
+Allow: /
+
+# AI answer-engine crawlers — explicitly welcomed so Kazoom can be cited
+# in ChatGPT, Perplexity, Google AI Overviews, Claude and others.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://kazoom.app/sitemap.xml
