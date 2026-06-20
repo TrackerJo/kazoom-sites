@@ -8,6 +8,10 @@ import s from '../Story.module.css'
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 type Errors = { name?: string; email?: string }
 
+// Web3Forms emails the lead to the address on the form's dashboard. The key is
+// public-by-design (it ships in the bundle); it lives in .env.local, not source.
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY
+
 /** Chapter 5 — the resting close. Auto-play has stopped; this screen is usable. */
 export function Invitation() {
   const [view, setView] = useState<'invite' | 'work'>('invite')
@@ -31,24 +35,59 @@ function InviteForm({ onSeeWork }: { onSeeWork: () => void }) {
   const [email, setEmail] = useState('')
   const [errors, setErrors] = useState<Errors>({})
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState(false)
 
   const nameRef = useRef<HTMLInputElement>(null)
   const emailRef = useRef<HTMLInputElement>(null)
   const doneRef = useRef<HTMLParagraphElement>(null)
+  // Honeypot: real people leave it empty, bots fill every field they find.
+  const trapRef = useRef<HTMLInputElement>(null)
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
+    const trimmedName = name.trim()
+    const trimmedEmail = email.trim()
+
     const next: Errors = {}
-    if (!name.trim()) next.name = 'Tell me your business name.'
-    if (!email.trim()) next.email = 'I need an email to reach you.'
-    else if (!EMAIL_RE.test(email.trim())) next.email = 'That email looks off, mind checking it?'
+    if (!trimmedName) next.name = 'Tell me your business name.'
+    if (!trimmedEmail) next.email = 'I need an email to reach you.'
+    else if (!EMAIL_RE.test(trimmedEmail)) next.email = 'That email looks off, mind checking it?'
 
     setErrors(next)
     if (next.name) return nameRef.current?.focus()
     if (next.email) return emailRef.current?.focus()
 
-    setSent(true)
-    requestAnimationFrame(() => doneRef.current?.focus())
+    // Bot tripped the honeypot: show the same success screen so we don't tip it
+    // off, but send nothing.
+    if (trapRef.current?.value) {
+      setSent(true)
+      return
+    }
+
+    setSubmitting(true)
+    setSubmitError(false)
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New lead: ${trimmedName}`,
+          from_name: 'Kazoom site',
+          name: trimmedName,
+          email: trimmedEmail,
+        }),
+      })
+      const data = await res.json()
+      if (!data.success) throw new Error(data.message || 'Submission failed')
+      setSent(true)
+      requestAnimationFrame(() => doneRef.current?.focus())
+    } catch {
+      setSubmitError(true)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (sent) {
@@ -127,9 +166,20 @@ function InviteForm({ onSeeWork }: { onSeeWork: () => void }) {
           </div>
         </div>
 
+        {/* Honeypot — visually hidden, off the tab order, never autofilled. */}
+        <input
+          ref={trapRef}
+          type="text"
+          name="botcheck"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+        />
+
         <div className={s.inviteActions}>
-          <button type="submit" className="btn btn-primary btn-lg">
-            Book my 10-minute call
+          <button type="submit" className="btn btn-primary btn-lg" disabled={submitting}>
+            {submitting ? 'Sending…' : 'Book my 10-minute call'}
             <ArrowRight />
           </button>
           <button type="button" className="btn btn-secondary btn-lg" onClick={onSeeWork}>
@@ -137,6 +187,12 @@ function InviteForm({ onSeeWork }: { onSeeWork: () => void }) {
             See work I've shipped
           </button>
         </div>
+
+        {submitError && (
+          <p className={s.error} role="alert">
+            Something went wrong sending that. Mind trying again in a moment?
+          </p>
+        )}
       </form>
 
       <p className={`${s.fine} ${s.aRise}`} style={{ animationDelay: '0.75s' }}>

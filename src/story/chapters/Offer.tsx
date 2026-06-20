@@ -6,18 +6,18 @@ const TERMS = [
   { big: 'One 10-minute call', small: 'and your site is live in about a week.' },
 ]
 
-/** Chapter 3 — the warm peak. Coral floods the stage; the offer lands plainly. */
+/** Chapter 3 — the warm peak. Sky floods the stage; the offer lands plainly. */
 export function Offer() {
   return (
     <div className={`${s.chapterInner} ${s.offerInner}`}>
       <span
-        className={`${s.kicker} ${s.kickerOnCoral} ${s.aRise}`}
+        className={`${s.kicker} ${s.kickerOnSky} ${s.aRise}`}
         style={{ animationDelay: '0.1s' }}
       >
         So here is what I do
       </span>
 
-      <h2 className={`${s.bigline} ${s.onCoral}`}>
+      <h2 className={`${s.bigline} ${s.onSky}`}>
         <span className={s.lineMask}>
           <span className={`${s.lineFill} ${s.aWipe}`} style={{ animationDelay: '0.2s' }}>
             I'll build your

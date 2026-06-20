@@ -62,7 +62,7 @@
   bottom: -2px;
   width: 100%;
   height: 2px;
-  background: var(--coral);
+  background: var(--sky);
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
@@ -90,7 +90,7 @@
   transition: color 0.2s ease;
 }
 .signIn:hover {
-  color: var(--coral-deep);
+  color: var(--sky-deep);
 }
 
 .toggle {
@@ -133,7 +133,7 @@
   border-bottom: 1px solid var(--border);
 }
 .mobile nav a[aria-current='true'] {
-  color: var(--coral-deep);
+  color: var(--sky-deep);
 }
 .mobile :global(.btn) {
   margin-top: 16px;

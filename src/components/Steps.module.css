@@ -57,7 +57,7 @@
   display: block;
   width: 100%;
   border-radius: 2px;
-  background: linear-gradient(var(--coral), var(--coral-strong));
+  background: linear-gradient(var(--sky), var(--sky-strong));
 }
 
 .railItem {
@@ -129,22 +129,22 @@
 }
 
 .done .node {
-  background: var(--coral-strong);
-  border-color: var(--coral-strong);
-  color: var(--on-coral);
+  background: var(--sky-strong);
+  border-color: var(--sky-strong);
+  color: var(--on-sky);
 }
 .done .railTitle {
   color: var(--ink);
 }
 
 .active {
-  background: var(--coral-softer);
+  background: var(--sky-softer);
   border-color: var(--border);
 }
 .active .node {
-  background: var(--coral-strong);
-  border-color: var(--coral-strong);
-  color: var(--on-coral);
+  background: var(--sky-strong);
+  border-color: var(--sky-strong);
+  color: var(--on-sky);
   transform: scale(1.06);
   box-shadow: 0 6px 18px oklch(0.55 0.14 35 / 0.34);
 }
@@ -158,7 +158,7 @@
 }
 
 .railItem:focus-visible {
-  outline: 2.5px solid var(--coral-strong);
+  outline: 2.5px solid var(--sky-strong);
   outline-offset: 2px;
 }
 @media (hover: hover) {
@@ -196,9 +196,9 @@
 }
 @media (hover: hover) {
   .toggle:hover {
-    color: var(--coral-deep);
-    border-color: var(--coral);
-    background: var(--coral-softer);
+    color: var(--sky-deep);
+    border-color: var(--sky);
+    background: var(--sky-softer);
   }
 }
 
@@ -219,7 +219,7 @@
   font-weight: 700;
   font-size: 0.92rem;
   letter-spacing: 0.04em;
-  color: var(--coral-strong);
+  color: var(--sky-strong);
   margin-bottom: 10px;
 }
 .stageTotal {
@@ -253,19 +253,19 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  color: var(--coral-strong);
-  background: var(--coral-soft);
+  color: var(--sky-strong);
+  background: var(--sky-soft);
   border-radius: 999px;
   padding: 3px;
 }
 
-/* The coral tile that holds each step's mini-scene. */
+/* The sky tile that holds each step's mini-scene. */
 .stageVisual {
   position: relative;
   flex: 1;
   min-height: 240px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(150deg, var(--coral-strong), var(--coral-deep));
+  background: linear-gradient(150deg, var(--sky-strong), var(--sky-deep));
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -301,7 +301,7 @@
 }
 
 /* ============================================================
-   Mini-scenes (white-on-coral)
+   Mini-scenes (white-on-sky)
    ============================================================ */
 
 .scene {
@@ -369,14 +369,14 @@
   border-radius: var(--pill);
   font-size: 0.86rem;
   font-weight: 600;
-  color: var(--coral-deep);
+  color: var(--sky-deep);
   background: var(--cream);
   box-shadow: 0 10px 24px oklch(0.3 0.08 30 / 0.3);
 }
 .pill svg {
   width: 16px;
   height: 16px;
-  color: var(--coral-strong);
+  color: var(--sky-strong);
 }
 
 /* browser scenes (build + live) */
@@ -404,7 +404,7 @@
   flex: 1;
   font-size: 0.82rem;
   font-weight: 500;
-  color: var(--on-coral);
+  color: var(--on-sky);
   letter-spacing: 0.01em;
 }
 .liveDot {
@@ -436,7 +436,7 @@
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--coral-deep);
+  color: var(--sky-deep);
   background: var(--cream);
   padding: 3px 9px;
   border-radius: var(--pill);
@@ -486,7 +486,7 @@
 }
 .pin {
   display: inline-flex;
-  color: var(--coral-strong);
+  color: var(--sky-strong);
 }
 .pin svg {
   width: 26px;
@@ -532,12 +532,12 @@
   bottom: calc(-1 * clamp(20px, 4vw, 32px) - 6px);
   width: 2px;
   border-radius: 2px;
-  background: linear-gradient(var(--coral) 30%, var(--border-strong));
+  background: linear-gradient(var(--sky) 30%, var(--border-strong));
 }
 .tlItem .node {
-  background: var(--coral-strong);
-  border-color: var(--coral-strong);
-  color: var(--on-coral);
+  background: var(--sky-strong);
+  border-color: var(--sky-strong);
+  color: var(--on-sky);
 }
 .tlCard {
   display: grid;

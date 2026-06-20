@@ -1,34 +1,37 @@
 /* ============================================================
-   Kazoom design system — committed-warm, coral-led
+   Kazoom design system — committed-cool, sky-blue-led
    ============================================================ */
 
 :root {
-  /* Brand coral (the surface carries this) */
-  --coral: oklch(0.71 0.155 33);
-  --coral-strong: oklch(0.61 0.165 32);
-  --coral-deep: oklch(0.5 0.15 31);
-  --coral-soft: oklch(0.95 0.04 48);
-  --coral-softer: oklch(0.972 0.022 55);
-  --on-coral: oklch(0.99 0.013 75);
-  --on-coral-dim: oklch(0.93 0.03 60);
+  /* Brand sky blue (the surface carries this). The friendly mid-tone is the
+     recognizable brand color; -strong/-deep stay dark enough to carry white
+     text at AA, so the colored "drench" surfaces lean on them. The lightness of
+     "light blue" lives in -soft/-softer tints, hero washes, and accents. */
+  --sky: oklch(0.7 0.13 238);
+  --sky-strong: oklch(0.56 0.155 245);
+  --sky-deep: oklch(0.45 0.14 250);
+  --sky-soft: oklch(0.93 0.045 235);
+  --sky-softer: oklch(0.965 0.022 235);
+  --on-sky: oklch(0.99 0.012 235);
+  --on-sky-dim: oklch(0.92 0.025 235);
 
-  /* Warm neutrals — every neutral tints toward the brand hue */
-  --cream: oklch(0.985 0.009 72);
-  --cream-2: oklch(0.965 0.014 68);
-  --surface: oklch(0.997 0.004 80);
-  --ink: oklch(0.27 0.025 45);
-  --ink-soft: oklch(0.44 0.021 45);
-  --muted: oklch(0.575 0.018 50);
-  --border: oklch(0.9 0.013 60);
-  --border-strong: oklch(0.84 0.016 55);
+  /* Cool neutrals — every neutral tints toward the brand hue */
+  --cream: oklch(0.985 0.008 235);
+  --cream-2: oklch(0.965 0.012 235);
+  --surface: oklch(0.997 0.004 240);
+  --ink: oklch(0.27 0.022 252);
+  --ink-soft: oklch(0.44 0.02 250);
+  --muted: oklch(0.575 0.018 248);
+  --border: oklch(0.9 0.013 240);
+  --border-strong: oklch(0.84 0.016 240);
 
-  /* Warm, diffuse, tonal elevation (no hard gray edges) */
-  --shadow-soft: 0 1px 2px oklch(0.45 0.05 40 / 0.05),
-    0 10px 26px oklch(0.5 0.09 40 / 0.08);
-  --shadow-lift: 0 2px 4px oklch(0.45 0.05 40 / 0.06),
-    0 22px 48px oklch(0.5 0.1 40 / 0.16);
-  --shadow-frame: 0 3px 6px oklch(0.4 0.05 40 / 0.07),
-    0 30px 60px oklch(0.42 0.09 38 / 0.2);
+  /* Cool, diffuse, tonal elevation (no hard gray edges) */
+  --shadow-soft: 0 1px 2px oklch(0.45 0.05 255 / 0.06),
+    0 10px 26px oklch(0.5 0.08 255 / 0.09);
+  --shadow-lift: 0 2px 4px oklch(0.45 0.05 255 / 0.07),
+    0 22px 48px oklch(0.5 0.09 255 / 0.17);
+  --shadow-frame: 0 3px 6px oklch(0.4 0.05 255 / 0.08),
+    0 30px 60px oklch(0.42 0.08 255 / 0.2);
 
   --radius-sm: 10px;
   --radius: 16px;
@@ -113,14 +116,14 @@ ul {
 }
 
 :focus-visible {
-  outline: 2.5px solid var(--coral-strong);
+  outline: 2.5px solid var(--sky-strong);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
 ::selection {
-  background: var(--coral-soft);
-  color: var(--coral-deep);
+  background: var(--sky-soft);
+  color: var(--sky-deep);
 }
 
 /* ---------- Layout primitives ---------- */
@@ -140,9 +143,9 @@ ul {
   font-weight: 600;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
-  /* coral-deep clears WCAG AA (6.2:1) at this small size; the bright coral
+  /* sky-deep clears WCAG AA (6.2:1) at this small size; the bright sky
      lives in the dash mark below, which is decorative, not text. */
-  color: var(--coral-deep);
+  color: var(--sky-deep);
   text-transform: none;
 }
 
@@ -151,7 +154,7 @@ ul {
   width: 22px;
   height: 2px;
   border-radius: 2px;
-  background: var(--coral);
+  background: var(--sky);
 }
 
 /* ---------- Buttons ---------- */
@@ -193,10 +196,10 @@ ul {
 }
 
 .btn-primary {
-  --btn-bg: var(--coral-strong);
-  --btn-fg: var(--on-coral);
-  box-shadow: 0 1px 2px oklch(0.45 0.1 35 / 0.18),
-    0 12px 24px oklch(0.55 0.14 35 / 0.28);
+  --btn-bg: var(--sky-strong);
+  --btn-fg: var(--on-sky);
+  box-shadow: 0 1px 2px oklch(0.45 0.12 250 / 0.22),
+    0 12px 24px oklch(0.5 0.14 250 / 0.3);
 }
 
 .btn-secondary {
@@ -206,17 +209,17 @@ ul {
   box-shadow: var(--shadow-soft);
 }
 
-/* On a coral surface, the secondary button inverts */
-.btn-on-coral {
+/* On a sky surface, the secondary button inverts */
+.btn-on-sky {
   --btn-bg: transparent;
-  --btn-fg: var(--on-coral);
+  --btn-fg: var(--on-sky);
   border-color: oklch(1 0 0 / 0.45);
 }
 
 .btn-light {
   --btn-bg: var(--cream);
-  --btn-fg: var(--coral-deep);
-  box-shadow: 0 12px 26px oklch(0.3 0.06 35 / 0.22);
+  --btn-fg: var(--sky-deep);
+  box-shadow: 0 12px 26px oklch(0.3 0.07 252 / 0.24);
 }
 
 /* Hover lift + glyph nudge only on devices that truly hover. On touch this
@@ -229,20 +232,20 @@ ul {
   }
 
   .btn-primary:hover {
-    --btn-bg: var(--coral-deep);
+    --btn-bg: var(--sky-deep);
     transform: translateY(-2px);
-    box-shadow: 0 2px 4px oklch(0.45 0.1 35 / 0.2),
-      0 18px 34px oklch(0.55 0.14 35 / 0.34);
+    box-shadow: 0 2px 4px oklch(0.45 0.12 250 / 0.24),
+      0 18px 34px oklch(0.5 0.14 250 / 0.36);
   }
 
   .btn-secondary:hover {
     transform: translateY(-2px);
-    border-color: var(--coral);
-    color: var(--coral-deep);
+    border-color: var(--sky);
+    color: var(--sky-deep);
     box-shadow: var(--shadow-lift);
   }
 
-  .btn-on-coral:hover {
+  .btn-on-sky:hover {
     --btn-bg: oklch(1 0 0 / 0.12);
     transform: translateY(-2px);
   }
@@ -250,7 +253,7 @@ ul {
   .btn-light:hover {
     --btn-bg: var(--surface);
     transform: translateY(-2px);
-    box-shadow: 0 18px 36px oklch(0.3 0.06 35 / 0.3);
+    box-shadow: 0 18px 36px oklch(0.3 0.07 252 / 0.32);
   }
 }
 
@@ -312,8 +315,8 @@ ul {
   z-index: 200;
   padding: 12px 18px;
   border-radius: var(--pill);
-  background: var(--coral-strong);
-  color: var(--on-coral);
+  background: var(--sky-strong);
+  color: var(--on-sky);
   font-weight: 600;
   box-shadow: var(--shadow-lift);
   transform: translateY(-150%);
@@ -327,7 +330,7 @@ ul {
    Showy layer — animated backdrops, marquee, shimmer
    ============================================================ */
 
-/* Living aurora: warm coral light that drifts behind the fold. */
+/* Living aurora: warm sky light that drifts behind the fold. */
 @keyframes aurora-drift {
   0% {
     transform: translate3d(0, 0, 0) scale(1);

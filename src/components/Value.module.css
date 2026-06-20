@@ -2,8 +2,8 @@
   position: relative;
   overflow: hidden;
   padding: clamp(64px, 9vw, 116px) 0;
-  background: var(--coral-deep);
-  color: var(--on-coral);
+  background: var(--sky-deep);
+  color: var(--on-sky);
 }
 
 .blobA,
@@ -38,14 +38,14 @@
 }
 .title {
   font-size: clamp(2rem, 3.6vw, 3rem);
-  color: var(--on-coral);
+  color: var(--on-sky);
   max-width: 16ch;
 }
 .sub {
   margin-top: 18px;
   font-size: 1.12rem;
   line-height: 1.55;
-  color: var(--on-coral-dim);
+  color: var(--on-sky-dim);
   max-width: 42ch;
 }
 
@@ -115,7 +115,7 @@
   border-radius: 13px;
   background: oklch(1 0 0 / 0.18);
   border: 1px solid oklch(1 0 0 / 0.2);
-  color: var(--on-coral);
+  color: var(--on-sky);
   transition:
     transform 0.3s var(--ease-out),
     background-color 0.25s ease;
@@ -151,7 +151,7 @@
   position: relative;
   z-index: 1;
   font-size: 1.1rem;
-  color: var(--on-coral);
+  color: var(--on-sky);
   margin-bottom: 6px;
   line-height: 1.2;
 }
@@ -161,7 +161,7 @@
   font-family: var(--body);
   font-size: 0.96rem;
   line-height: 1.5;
-  color: var(--on-coral-dim);
+  color: var(--on-sky-dim);
 }
 
 @media (max-width: 900px) {

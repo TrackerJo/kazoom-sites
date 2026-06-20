@@ -10,9 +10,9 @@
   transform: scaleX(0);
   background: linear-gradient(
     90deg,
-    var(--coral) 0%,
-    var(--coral-strong) 55%,
-    var(--coral-deep) 100%
+    var(--sky) 0%,
+    var(--sky-strong) 55%,
+    var(--sky-deep) 100%
   );
   box-shadow: 0 1px 6px oklch(0.55 0.14 35 / 0.35);
   pointer-events: none;

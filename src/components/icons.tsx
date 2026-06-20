@@ -141,10 +141,10 @@ export const Play = (p: SVGProps<SVGSVGElement>) => (
 
 export const KazoomMark = (p: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" {...p}>
-    <rect width="32" height="32" rx="9" fill="var(--coral-strong)" />
+    <rect width="32" height="32" rx="9" fill="var(--sky-strong)" />
     <path
       d="M11 9.5a2 2 0 1 1 4 0v4.2l5-4.7a2 2 0 0 1 2.8 2.9L18.6 16l4.4 4.7a2 2 0 1 1-3 2.7L15 18.6V23a2 2 0 1 1-4 0V9.5Z"
-      fill="var(--on-coral)"
+      fill="var(--on-sky)"
     />
   </svg>
 )

@@ -72,7 +72,7 @@ const drop: Variants = {
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: EASE_OUT } },
 }
 
-/** A small purpose-built illustration for each step, white-on-coral. */
+/** A small purpose-built illustration for each step, white-on-sky. */
 function Scene({ scene, play }: { scene: SceneId; play: boolean }) {
   const anim = play ? { initial: 'hidden' as const, animate: 'show' as const } : {}
 
@@ -119,7 +119,7 @@ function Scene({ scene, play }: { scene: SceneId; play: boolean }) {
             <motion.span className={styles.blockB} variants={piece} />
           </div>
           <div className={styles.swatches}>
-            {['var(--coral)', 'var(--coral-strong)', 'var(--coral-deep)'].map((c, i) => (
+            {['var(--sky)', 'var(--sky-strong)', 'var(--sky-deep)'].map((c, i) => (
               <motion.span
                 key={i}
                 className={styles.swatch}
@@ -154,7 +154,7 @@ function Scene({ scene, play }: { scene: SceneId; play: boolean }) {
         <span className={styles.pin} aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z" />
-            <circle cx="12" cy="9" r="2.6" fill="var(--coral-strong)" />
+            <circle cx="12" cy="9" r="2.6" fill="var(--sky-strong)" />
           </svg>
         </span>
         <span className={styles.resultText}>

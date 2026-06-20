@@ -1,7 +1,7 @@
 .frame {
   margin: 0;
   border-radius: 14px;
-  background: oklch(0.99 0.004 80);
+  background: oklch(0.99 0.004 240);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-frame);
   overflow: hidden;
@@ -18,7 +18,7 @@
   align-items: center;
   gap: 10px;
   padding: 9px 12px;
-  background: oklch(0.96 0.006 70);
+  background: oklch(0.96 0.006 240);
   border-bottom: 1px solid var(--border);
 }
 
@@ -31,7 +31,7 @@
   width: 9px;
   height: 9px;
   border-radius: 999px;
-  background: oklch(0.85 0.01 60);
+  background: oklch(0.85 0.01 240);
 }
 .dots i:nth-child(1) {
   background: oklch(0.78 0.13 28);
@@ -52,7 +52,7 @@
   font-family: var(--body);
   font-size: 0.72rem;
   color: var(--muted);
-  background: oklch(0.99 0.004 80);
+  background: oklch(0.99 0.004 240);
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 4px 12px;
@@ -179,7 +179,7 @@
   border: 1px solid var(--ms-border);
   padding: 5px 10px;
   border-radius: 999px;
-  box-shadow: 0 6px 14px oklch(0.4 0.05 40 / 0.12);
+  box-shadow: 0 6px 14px oklch(0.4 0.05 255 / 0.12);
 }
 
 .msItems {

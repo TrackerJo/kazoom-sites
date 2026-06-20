@@ -3,7 +3,7 @@ import type { MiniSiteData } from '../components/MiniSite'
 /**
  * Example small-business sites, each with its own palette and typeface so the
  * showcase reads as bespoke work, not one template recolored. None of these
- * use Kazoom's coral; the point is range.
+ * use Kazoom's sky; the point is range.
  */
 
 export const marloweCoffee: MiniSiteData = {

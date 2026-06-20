@@ -4,7 +4,7 @@
   overflow: hidden;
 }
 
-/* ---------- Living coral aurora ---------- */
+/* ---------- Living sky aurora ---------- */
 .aurora {
   position: absolute;
   inset: -25% -10% auto 0;
@@ -80,7 +80,7 @@
   display: block;
 }
 .accentLine {
-  color: var(--coral-strong);
+  color: var(--sky-strong);
 }
 .wordMask {
   display: inline-block;
@@ -126,8 +126,8 @@
 .chips svg {
   width: 18px;
   height: 18px;
-  color: var(--coral-strong);
-  background: var(--coral-soft);
+  color: var(--sky-strong);
+  background: var(--sky-soft);
   border-radius: 999px;
   padding: 3px;
 }

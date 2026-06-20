@@ -9,7 +9,7 @@
 }
 .stat {
   padding-left: clamp(20px, 3vw, 40px);
-  border-left: 2px solid var(--coral-soft);
+  border-left: 2px solid var(--sky-soft);
 }
 .stat:first-child {
   padding-left: 0;
@@ -25,13 +25,13 @@
   font-size: clamp(3rem, 6vw, 4.6rem);
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--coral-strong);
+  color: var(--sky-strong);
 }
 .unit {
   font-size: clamp(1rem, 1.6vw, 1.4rem);
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--coral-deep);
+  color: var(--sky-deep);
 }
 .label {
   margin-top: 14px;
@@ -50,7 +50,7 @@
     padding-left: 0;
     border-left: none;
     padding-top: 22px;
-    border-top: 2px solid var(--coral-soft);
+    border-top: 2px solid var(--sky-soft);
   }
   .stat:first-child {
     padding-top: 0;

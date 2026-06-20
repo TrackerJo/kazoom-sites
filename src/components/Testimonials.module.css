@@ -19,8 +19,8 @@
   gap: 28px;
   margin: 0;
   padding: clamp(30px, 4vw, 52px);
-  background: var(--coral-softer);
-  border: 1px solid var(--coral-soft);
+  background: var(--sky-softer);
+  border: 1px solid var(--sky-soft);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lift);
   cursor: grab;
@@ -43,7 +43,7 @@
   display: block;
   font-size: 3rem;
   line-height: 0.6;
-  color: var(--coral);
+  color: var(--sky);
   margin-bottom: 10px;
 }
 
@@ -59,7 +59,7 @@
   width: 50px;
   height: 50px;
   border-radius: 999px;
-  color: var(--on-coral);
+  color: var(--on-sky);
   font-family: var(--display);
   font-weight: 700;
   font-size: 1rem;
@@ -101,7 +101,7 @@
 }
 .dotOn {
   width: 28px;
-  background: var(--coral-strong);
+  background: var(--sky-strong);
 }
 
 .arrows {
@@ -127,8 +127,8 @@
 @media (hover: hover) {
   .arrow:hover {
     transform: translateY(-2px);
-    border-color: var(--coral);
-    color: var(--coral-deep);
+    border-color: var(--sky);
+    color: var(--sky-deep);
     box-shadow: var(--shadow-lift);
   }
 }

@@ -12,7 +12,7 @@ import s from './Story.module.css'
 
 const TONES = [s.toneReality, s.toneStakes, s.toneOffer, s.toneProof, s.toneInvite]
 const CHAPTER_COMPONENTS = [Reality, Stakes, Offer, Proof, Invitation]
-// Chapters 1 (Stakes, dark ink) and 2 (Offer, coral) need inverted chrome.
+// Chapters 1 (Stakes, dark ink) and 2 (Offer, sky) need inverted chrome.
 const DARK_TONE = new Set([1, 2])
 const LAST = CHAPTERS.length - 1
 

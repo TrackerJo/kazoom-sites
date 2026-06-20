@@ -26,13 +26,13 @@
 }
 .helpLink {
   font-weight: 600;
-  color: var(--coral-strong);
+  color: var(--sky-strong);
   text-decoration: underline;
-  text-decoration-color: var(--coral-soft);
+  text-decoration-color: var(--sky-soft);
   text-underline-offset: 3px;
 }
 .helpLink:hover {
-  text-decoration-color: var(--coral);
+  text-decoration-color: var(--sky);
 }
 
 .list {
@@ -64,7 +64,7 @@
   transition: color 0.2s ease;
 }
 .question:hover {
-  color: var(--coral-deep);
+  color: var(--sky-deep);
 }
 
 .icon {
@@ -75,8 +75,8 @@
   width: 36px;
   height: 36px;
   border-radius: 999px;
-  background: var(--coral-soft);
-  color: var(--coral-deep);
+  background: var(--sky-soft);
+  color: var(--sky-deep);
 }
 .icon svg {
   width: 20px;

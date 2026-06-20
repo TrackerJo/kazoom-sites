@@ -4,10 +4,10 @@
   margin: clamp(40px, 6vw, 80px) clamp(16px, 4vw, 40px) 0;
   padding: clamp(56px, 8vw, 100px) clamp(24px, 5vw, 64px);
   border-radius: var(--radius-xl);
-  /* coral-deep base so body copy (on-coral-dim) clears WCAG AA (5.2:1). The
-     brighter coral warmth comes from the decorative .blob, not the text bg. */
-  background: var(--coral-deep);
-  color: var(--on-coral);
+  /* sky-deep base so body copy (on-sky-dim) clears WCAG AA (5.2:1). The
+     brighter sky warmth comes from the decorative .blob, not the text bg. */
+  background: var(--sky-deep);
+  color: var(--on-sky);
   text-align: center;
 }
 
@@ -29,16 +29,16 @@
   z-index: 1;
 }
 
-/* On the coral panel the default coral focus ring all but disappears, so
+/* On the sky panel the default sky focus ring all but disappears, so
    anything focusable inside switches to a light ring. Inputs override below. */
 .section :focus-visible {
-  outline-color: var(--on-coral);
+  outline-color: var(--on-sky);
 }
 
 .title {
   font-size: clamp(2.2rem, 5vw, 3.8rem);
   letter-spacing: -0.035em;
-  color: var(--on-coral);
+  color: var(--on-sky);
   margin-inline: auto;
   max-width: 16ch;
 }
@@ -47,7 +47,7 @@
   max-width: 46ch;
   font-size: clamp(1.08rem, 1.6vw, 1.25rem);
   line-height: 1.55;
-  color: var(--on-coral-dim);
+  color: var(--on-sky-dim);
 }
 /* ---------- Start form ---------- */
 
@@ -74,7 +74,7 @@
   font-family: var(--body);
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--on-coral);
+  color: var(--on-sky);
   padding-left: 2px;
 }
 
@@ -114,7 +114,7 @@
   font-family: var(--body);
   font-size: 0.84rem;
   font-weight: 600;
-  color: var(--on-coral);
+  color: var(--on-sky);
 }
 .error::before {
   content: '';
@@ -122,7 +122,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--on-coral);
+  background: var(--on-sky);
 }
 
 .submitRow {
@@ -135,10 +135,10 @@
   margin-top: 22px;
   font-family: var(--body);
   font-size: 0.98rem;
-  color: var(--on-coral-dim);
+  color: var(--on-sky-dim);
 }
 .alt a {
-  color: var(--on-coral);
+  color: var(--on-sky);
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -160,7 +160,7 @@
   margin-bottom: 24px;
   border-radius: 50%;
   background: var(--cream);
-  color: var(--coral-deep);
+  color: var(--sky-deep);
   box-shadow: 0 12px 26px oklch(0.3 0.06 35 / 0.22);
 }
 .doneIcon svg {
@@ -171,7 +171,7 @@
   outline-offset: 8px;
 }
 .done .sub strong {
-  color: var(--on-coral);
+  color: var(--on-sky);
   font-weight: 700;
 }
 
@@ -180,7 +180,7 @@
   font-family: var(--body);
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--on-coral-dim);
+  color: var(--on-sky-dim);
 }
 
 @media (max-width: 560px) {

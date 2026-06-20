@@ -79,7 +79,7 @@
   align-items: center;
   gap: 6px;
   font-weight: 600;
-  color: var(--coral-strong);
+  color: var(--sky-strong);
 }
 .footLink svg {
   width: 19px;
