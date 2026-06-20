@@ -31,7 +31,9 @@ export function Stakes() {
         {STATS.map((stat, i) => (
           <div className={`${s.stat} ${s.aRise}`} key={stat.to} style={{ animationDelay: `${0.7 + i * 0.18}s` }}>
             <span className={s.statNum}>
-              <CountUp to={stat.to} suffix={stat.suffix} />
+              {/* Start the climb as the row finishes rising in, so the whole
+                  count is visible rather than already near its final value. */}
+              <CountUp to={stat.to} suffix={stat.suffix} delay={900 + i * 180} />
             </span>
             <span className={s.statLabel}>{stat.label}</span>
           </div>

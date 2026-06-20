@@ -1,0 +1,253 @@
+/* ============================================================
+   PRSM Allergy Foundation — a faithful miniature of the live
+   hero (prsmallergy.org). Reuses MiniSite's browser-chrome frame;
+   this module is the page body: a two-column hero (copy left, logo
+   card right) over a cartographic grid, in the foundation's own
+   teal + navy palette.
+   ============================================================ */
+
+.viewport {
+  --teal: #01d1d1;
+  --teal-deep: #008080;
+  --blue: #0a6c95;
+  --blue-deep: #054d6f;
+  --navy: #1a2e3b;
+  --body: #425466;
+  --paper: #f6fbfd;
+  --line: rgba(26, 46, 59, 0.05);
+
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, var(--paper) 100%);
+  color: var(--body);
+  font-family: var(--ms-font);
+}
+
+/* ---------- top nav ---------- */
+.nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  border-bottom: 1px solid #e6eef3;
+  background: rgba(255, 255, 255, 0.8);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.brandMark {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.brandText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.brandName {
+  font-weight: 700;
+  font-size: 0.78rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.tagline {
+  font-size: 0.52rem;
+  line-height: 1.1;
+  color: var(--body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.links {
+  display: flex;
+  gap: 11px;
+  margin-left: auto;
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--navy);
+}
+.donate {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--teal-deep), var(--blue-deep));
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 18px 26px;
+  overflow: hidden;
+}
+/* cartographic grid field, faded toward edges */
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(120% 120% at 70% 25%, #000 38%, transparent 80%);
+  mask-image: radial-gradient(120% 120% at 70% 25%, #000 38%, transparent 80%);
+  pointer-events: none;
+}
+/* teal glow, top-right, echoing the live hero */
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(56% 48% at 94% -4%, rgba(1, 209, 209, 0.2), transparent 70%);
+  pointer-events: none;
+}
+
+.heroText {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+}
+.kicker::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex: none;
+  background: var(--teal);
+  rotate: 45deg;
+  box-shadow: 0 0 0 3px rgba(1, 209, 209, 0.18);
+}
+.heading {
+  font-weight: 800;
+  font-size: 1.6rem;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+}
+.sub {
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--body);
+  max-width: 30ch;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--teal-deep), var(--blue-deep));
+  padding: 9px 18px;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(8, 72, 95, 0.22);
+}
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-top: 4px;
+  font-size: 0.6rem;
+  line-height: 1.35;
+  color: var(--body);
+  max-width: 30ch;
+}
+.note::before {
+  content: '';
+  margin-top: 3px;
+  width: 6px;
+  height: 6px;
+  flex: none;
+  background: var(--teal);
+  rotate: 45deg;
+}
+
+/* ---------- logo card ---------- */
+.heroCard {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 14px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #e6eef3;
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(24, 49, 79, 0.1);
+}
+.heroLogo {
+  width: 58%;
+  max-width: 130px;
+  height: auto;
+}
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.wordmark b {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.wordmark span {
+  font-size: 0.5rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--teal-deep);
+  text-align: left;
+}
+
+/* ---------- narrow frame: stack, drop the card, trim nav ---------- */
+@container (max-width: 420px) {
+  .tagline {
+    display: none;
+  }
+  .links span:nth-child(n + 4) {
+    display: none;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .heroCard {
+    display: none;
+  }
+  .heading {
+    font-size: 1.35rem;
+  }
+}

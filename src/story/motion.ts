@@ -7,9 +7,9 @@ export type ChapterMeta = {
 }
 
 export const CHAPTERS: ChapterMeta[] = [
-  { id: 'reality', label: 'The reality', duration: 7200 },
-  { id: 'stakes', label: "What's at stake", duration: 8600 },
-  { id: 'offer', label: 'The offer', duration: 8800 },
-  { id: 'proof', label: 'How it works', duration: 8800 },
+  { id: 'reality', label: 'The reality', duration: 5200 },
+  { id: 'stakes', label: "What's at stake", duration: 6000 },
+  { id: 'offer', label: 'The offer', duration: 6200 },
+  { id: 'proof', label: 'How it works', duration: 6400 },
   { id: 'invite', label: "Let's begin", duration: Infinity },
 ]
