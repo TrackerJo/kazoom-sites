@@ -908,6 +908,10 @@
   }
 }
 
+/* ---------- Phones (portrait) ----------
+   The autoplay stage is fixed and clipped (no scroll), so each chapter must
+   fit one viewport. These rules compress the tall chapters (Proof, Stakes,
+   Offer) so nothing is cut off down to an iPhone-SE-height stage. */
 @media (max-width: 560px) {
   .railLabel {
     display: none;
@@ -919,8 +923,94 @@
   .controls {
     gap: 14px;
   }
+
+  /* Tighter vertical rhythm across every chapter on a phone. */
+  .chapterInner {
+    gap: clamp(12px, 2vh, 18px);
+  }
+  /* Comfortable tap target for the only header control. */
+  .skipBtn {
+    min-height: 44px;
+    padding: 6px 8px;
+  }
+
+  /* Reality: five rows + two-line head. Tighten the list so it clears the note. */
+  .realityInner .todo {
+    padding: 7px 14px;
+  }
+  .realityInner .todoBox {
+    width: 23px;
+    height: 23px;
+  }
+
+  /* Stakes: the two big numbers stack on narrow widths; rein them in. */
   .stats {
-    gap: clamp(20px, 6vh, 36px);
+    gap: clamp(16px, 4vh, 28px);
+  }
+  .statNum {
+    font-size: clamp(3rem, 13vw, 4rem);
+  }
+  .statLabel {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  /* Offer: three terms stack; tighten the spacing and supporting line. */
+  .terms {
+    gap: clamp(12px, 2vh, 20px);
+  }
+  .offerInner .termBig {
+    font-size: 1.2rem;
+  }
+  .offerPersonal {
+    font-size: 1.02rem;
+    line-height: 1.4;
+  }
+
+  /* Proof: drop the site preview on phones. The three steps carry the chapter
+     with room to breathe, so they keep their comfortable (tablet) sizing. */
+  .proofVisual {
+    display: none;
+  }
+
+  /* Invitation: stack the name/email fields so each is full-width for typing,
+     and let the primary CTA span the row. */
+  .fields {
+    grid-template-columns: 1fr;
+  }
+  .inviteActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .inviteActions .btn {
+    width: 100%;
+  }
+}
+
+/* ---------- Short viewports (landscape phones, small windows) ----------
+   Height-driven safety net: when there isn't enough vertical room, pull the
+   largest type and the spacing down further so chapters still clear the stage. */
+@media (max-height: 620px) {
+  .chapterInner {
+    gap: clamp(8px, 1.4vh, 14px);
+  }
+  .bigline {
+    font-size: clamp(1.9rem, 5.5vh, 3rem);
+  }
+  .statNum {
+    font-size: clamp(2.6rem, 9vh, 4rem);
+  }
+  .stats {
+    gap: clamp(14px, 3vw, 32px);
+  }
+  .terms {
+    gap: clamp(10px, 2vw, 24px);
+  }
+  .proofVisual {
+    display: none;
+  }
+  .proofInner .steps {
+    gap: clamp(6px, 1.2vh, 12px);
   }
 }
 
